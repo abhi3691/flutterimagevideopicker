@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:photo_gallery/photo_gallery.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -31,6 +33,7 @@ class AlbumPageState extends State<AlbumPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -46,9 +49,10 @@ class AlbumPageState extends State<AlbumPage> {
           children: <Widget>[
             ...?_media?.map(
               (medium) => GestureDetector(
-                onTap: () {
-                  widget.onTap(medium);
-                },
+                onTap: (() async {
+                  final File file = await medium.getFile();
+                  widget.onTap(file.path);
+                }),
                 child: Container(
                   color: Colors.grey[300],
                   child: FadeInImage(

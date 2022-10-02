@@ -1,23 +1,98 @@
-## Features
+# flutterimagevideopicker
 
-Image Video Picker
+A Flutter plugin that retrieves images and videos from mobile native gallery.
 
-## Getting started
+## Installation
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+First, add photo_gallery as a [dependency in your pubspec.yaml file](https://flutter.dev/docs/development/packages-and-plugins/using-packages).
+
+#### iOS
+
+Add the following keys to your _Info.plist_ file, located in `<project root>/ios/Runner/Info.plist`:
+
+`NSPhotoLibraryUsageDescription` - describe why your app needs permission for the photo library. This is called _Privacy - Photo Library Usage Description_ in the visual editor.
+
+```xml
+<key>NSPhotoLibraryUsageDescription</key>
+<string>Example usage description</string>
+```
+
+#### Android
+
+Add the following permissions to your _AndroidManifest.xml_, located in `<project root>/android/app/src/main/AndroidManifest.xml`:
+
+```xml
+<manifest ...>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    ...
+<manifest/>
+```
+
+API 29+
+
+Add the following property to your _AndroidManifest.xml_, located in `<project root>/android/app/src/main/AndroidManifest.xml` to [opt-out of scoped storage](https://developer.android.com/training/data-storage/use-cases#opt-out-scoped-storage):
+
+```xml
+<manifest ...>
+    ...
+    <application
+        android:requestLegacyExternalStorage="true"
+        ...>
+    <application/>
+<manifest/>
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+- Listing albums in the gallery
 
 ```dart
-const like = 'sample';
+import 'package:flutter/material.dart';
+import 'package:flutterimagevideopicker/flutterimagevideopicker.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key, required String title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        color: Colors.black,
+        child: FlutterImageVideoPicker(
+            title: "Gallery",
+            onTap: (value) {
+              print("value is $value");
+            }),
+      ),
+    );
+  }
+}
 ```
 
-## Additional information
+Width and height is only available on Android API 29+ or iOS platform
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+- Displaying album thumbnail

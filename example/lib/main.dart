@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      showSemanticsDebugger: false,
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -32,7 +32,11 @@ class MyHomePage extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         color: Colors.black,
-        child: FlutterImageVideoPicker(title: "Gallery", onTap: () {}),
+        child: FlutterImageVideoPicker(
+            title: "Gallery",
+            onTap: (value) {
+              print("value is $value");
+            }),
       ),
     );
   }
