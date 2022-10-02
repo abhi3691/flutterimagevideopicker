@@ -1,5 +1,5 @@
 name: flutterimagevideopicker
-description: flutter Image And Video Picker Package
+description: A Flutter plugin for iOS and Android for picking images & video from the image & video Library
 version: 0.0.1
 homepage: https://github.com/abhi3691/flutterimagevideopicker
 

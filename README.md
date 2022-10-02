@@ -1,6 +1,6 @@
 # flutterimagevideopicker
 
-A Flutter plugin that retrieves images and videos from mobile native gallery.
+A Flutter plugin for iOS and Android for picking images & video from the image & video Library
 
 ## Installation
 
