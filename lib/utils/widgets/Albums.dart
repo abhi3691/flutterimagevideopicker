@@ -7,11 +7,12 @@ class Albums extends StatelessWidget {
   const Albums({
     Key? key,
     required List<Album>? albums,
+    required this.onTap,
   })  : _albums = albums,
         super(key: key);
 
   final List<Album>? _albums;
-
+  final Function onTap;
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -30,7 +31,10 @@ class Albums extends StatelessWidget {
               ...?_albums?.map(
                 (album) => GestureDetector(
                   onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => AlbumPage(album))),
+                      builder: (context) => AlbumPage(
+                            album: album,
+                            onTap: onTap,
+                          ))),
                   child: Column(
                     children: <Widget>[
                       ClipRRect(

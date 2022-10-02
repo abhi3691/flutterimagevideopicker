@@ -4,12 +4,20 @@ import 'package:flutterimagevideopicker/utils/functions/permissions.dart';
 import 'package:flutterimagevideopicker/utils/widgets/Albums.dart';
 import 'package:photo_gallery/photo_gallery.dart';
 
-class MyApp extends StatefulWidget {
+class FlutterImageVideoPicker extends StatefulWidget {
+  final String title;
+
+  const FlutterImageVideoPicker(
+      {super.key, required this.onTap, required this.title});
+
+  final Function onTap;
+
   @override
-  _MyAppState createState() => _MyAppState();
+  _FlutterImageVideoPickerState createState() =>
+      _FlutterImageVideoPickerState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _FlutterImageVideoPickerState extends State<FlutterImageVideoPicker> {
   List<Album>? _albums;
   bool _loading = false;
 
@@ -46,13 +54,16 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Photo gallery'),
+          title: Text(widget.title),
         ),
         body: _loading
             ? const Center(
                 child: CircularProgressIndicator(),
               )
-            : Albums(albums: _albums),
+            : Albums(
+                albums: _albums,
+                onTap: widget.onTap,
+              ),
       ),
     );
   }

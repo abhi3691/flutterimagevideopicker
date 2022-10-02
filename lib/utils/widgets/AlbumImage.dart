@@ -3,9 +3,10 @@ import 'package:photo_gallery/photo_gallery.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class AlbumPage extends StatefulWidget {
-  final Album album;
+  const AlbumPage({super.key, required this.album, required this.onTap});
 
-  AlbumPage(Album album) : album = album;
+  final Album album;
+  final Function onTap;
 
   @override
   State<StatefulWidget> createState() => AlbumPageState();
@@ -46,7 +47,7 @@ class AlbumPageState extends State<AlbumPage> {
             ...?_media?.map(
               (medium) => GestureDetector(
                 onTap: () {
-                  print(medium);
+                  widget.onTap(medium);
                 },
                 child: Container(
                   color: Colors.grey[300],
