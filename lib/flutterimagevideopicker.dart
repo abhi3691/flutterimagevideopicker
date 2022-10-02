@@ -1,3 +1,3 @@
 library flutterimagevideopicker;
 
-export 'src/flutterimagevideopicker.dart';
+export 'utils/flutterimagevideopicker.dart';
