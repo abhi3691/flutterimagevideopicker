@@ -6,9 +6,14 @@ import 'package:photo_gallery/photo_gallery.dart';
 
 class FlutterImageVideoPicker extends StatefulWidget {
   final String title;
+  final MaterialColor themeColor;
 
-  const FlutterImageVideoPicker(
-      {super.key, required this.onTap, required this.title});
+  const FlutterImageVideoPicker({
+    super.key,
+    required this.onTap,
+    required this.title,
+    required this.themeColor,
+  });
 
   final Function onTap;
 
@@ -51,6 +56,7 @@ class _FlutterImageVideoPickerState extends State<FlutterImageVideoPicker> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(primarySwatch: widget.themeColor),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
@@ -61,6 +67,7 @@ class _FlutterImageVideoPickerState extends State<FlutterImageVideoPicker> {
                 child: CircularProgressIndicator(),
               )
             : Albums(
+                themeColor: widget.themeColor,
                 albums: _albums,
                 onTap: widget.onTap,
               ),

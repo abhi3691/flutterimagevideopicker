@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -78,26 +78,22 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        color: Colors.black,
-        child: FlutterImageVideoPicker(
-            title: "Gallery",
-            onTap: (value) {
-              print("value is $value");
-            }),
+      body: Center(
+        child: ElevatedButton(
+            onPressed: () async {
+              var result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => Gallery(context),
+                    fullscreenDialog: true,
+                  ));
+              print("result is ==== $result");
+            },
+            child: Text("Open Gallery")),
       ),
     );
   }
 }
-```
-
-- src\screens\Gallery.dart
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:flutterimagevideopicker/utils/flutterimagevideopicker.dart';
 
 class Gallery extends StatelessWidget {
   const Gallery(BuildContext context, {super.key});
@@ -109,6 +105,7 @@ class Gallery extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         color: Colors.black,
         child: FlutterImageVideoPicker(
+            themeColor: Colors.red,
             title: "Gallery",
             onTap: (value) {
               Future.delayed(const Duration(milliseconds: 500), () {

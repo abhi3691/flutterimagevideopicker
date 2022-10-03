@@ -1,4 +1,3 @@
-import 'package:example/src/screens/Gallery.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterimagevideopicker/flutterimagevideopicker.dart';
 
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -43,5 +42,27 @@ class MyHomePage extends StatelessWidget {
             child: Text("Open Gallery")),
       ),
     );
+  }
+}
+
+class Gallery extends StatelessWidget {
+  const Gallery(BuildContext context, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        color: Colors.black,
+        child: FlutterImageVideoPicker(
+            themeColor: Colors.red,
+            title: "Gallery",
+            onTap: (value) {
+              Future.delayed(const Duration(milliseconds: 500), () {
+                if (value != null) {
+                  Navigator.pop(context, value);
+                }
+              });
+            }));
   }
 }

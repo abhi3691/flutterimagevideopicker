@@ -5,11 +5,15 @@ import 'package:photo_gallery/photo_gallery.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class AlbumPage extends StatefulWidget {
-  const AlbumPage({super.key, required this.album, required this.onTap});
+  const AlbumPage(
+      {super.key,
+      required this.album,
+      required this.onTap,
+      required this.themeColor});
 
   final Album album;
   final Function onTap;
-
+  final MaterialColor themeColor;
   @override
   State<StatefulWidget> createState() => AlbumPageState();
 }
@@ -33,6 +37,7 @@ class AlbumPageState extends State<AlbumPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(primarySwatch: widget.themeColor),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(

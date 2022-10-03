@@ -8,11 +8,13 @@ class Albums extends StatelessWidget {
     Key? key,
     required List<Album>? albums,
     required this.onTap,
+    required this.themeColor,
   })  : _albums = albums,
         super(key: key);
 
   final List<Album>? _albums;
   final Function onTap;
+  final MaterialColor themeColor;
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -34,6 +36,7 @@ class Albums extends StatelessWidget {
                       builder: (context) => AlbumPage(
                             album: album,
                             onTap: onTap,
+                            themeColor: themeColor,
                           ))),
                   child: Column(
                     children: <Widget>[
