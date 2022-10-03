@@ -92,7 +92,3 @@ class MyHomePage extends StatelessWidget {
   }
 }
 ```
-
-Width and height is only available on Android API 29+ or iOS platform
-
-- Displaying album thumbnail

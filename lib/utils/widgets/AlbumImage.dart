@@ -52,6 +52,10 @@ class AlbumPageState extends State<AlbumPage> {
                 onTap: (() async {
                   final File file = await medium.getFile();
                   widget.onTap(file.path);
+                  int count = 0;
+                  Future.delayed(const Duration(milliseconds: 500), () {
+                    Navigator.of(context).popUntil((_) => count++ >= 2);
+                  });
                 }),
                 child: Container(
                   color: Colors.grey[300],

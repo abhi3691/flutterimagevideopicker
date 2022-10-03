@@ -1,3 +1,4 @@
+import 'package:example/src/screens/Gallery.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterimagevideopicker/flutterimagevideopicker.dart';
 
@@ -28,15 +29,18 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        color: Colors.black,
-        child: FlutterImageVideoPicker(
-            title: "Gallery",
-            onTap: (value) {
-              print("value is $value");
-            }),
+      body: Center(
+        child: ElevatedButton(
+            onPressed: () async {
+              var result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => Gallery(context),
+                    fullscreenDialog: true,
+                  ));
+              print("result is ==== $result");
+            },
+            child: Text("Open Gallery")),
       ),
     );
   }
